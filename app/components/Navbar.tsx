@@ -36,7 +36,7 @@ export default function Navbar() {
 
                 {/* DESKTOP ICONS */}
                 <div className="hidden md:flex items-center gap-4 text-[25px]">
-                    <button><FaSearch /></button>
+
                     <button><CgProfile /></button>
                     <button><FaShoppingCart /></button>
                 </div>
@@ -75,7 +75,7 @@ export default function Navbar() {
                     <li className="cursor-pointer hover:text-amber-300 duration-700">Contact Us</li>
 
                     <div className="flex items-center gap-4 text-[25px] pt-4 border-t border-white/30">
-                        <button><FaSearch /></button>
+
                         <button><CgProfile /></button>
                         <button><FaShoppingCart /></button>
                     </div>
