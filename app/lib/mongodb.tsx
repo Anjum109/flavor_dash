@@ -7,28 +7,18 @@ if (!process.env.MONGODB_URI) {
 const uri = process.env.MONGODB_URI;
 const options = {};
 
-let client: MongoClient;
+let client;
 let clientPromise: Promise<MongoClient>;
 
-// For development: avoid creating multiple connections
 if (process.env.NODE_ENV === "development") {
     if (!(global as any)._mongoClientPromise) {
-        console.log("🔄 Running MongoDB connection (development)...");
         client = new MongoClient(uri, options);
-        (global as any)._mongoClientPromise = client.connect().then(() => {
-            console.log("✅ MongoDB Connected Successfully (Development)");
-            return client;
-        });
+        (global as any)._mongoClientPromise = client.connect();
     }
     clientPromise = (global as any)._mongoClientPromise;
 } else {
-    // For production: simple connection
-    console.log("🔄 Running MongoDB connection (production)...");
     client = new MongoClient(uri, options);
-    clientPromise = client.connect().then(() => {
-        console.log("✅ MongoDB Connected Successfully (Production)");
-        return client;
-    });
+    clientPromise = client.connect();
 }
 
 export default clientPromise;
