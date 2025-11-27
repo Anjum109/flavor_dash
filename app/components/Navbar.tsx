@@ -1,5 +1,4 @@
 import { advent_pro, monoton } from '@/font/font'
-import React from 'react'
 import { CgProfile } from "react-icons/cg";
 import { FaSearch } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";

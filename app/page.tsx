@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Navbar from "./components/Navbar";
 import Banner from "./components/Homepage/Banner";
+import MovingWord from "./components/Homepage/MovingWord";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
         <Navbar />
         <Banner />
       </div>
+      <MovingWord />
     </div>
   );
 }
