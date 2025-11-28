@@ -87,7 +87,7 @@ export default function UsersList() {
             ) : (
                 <table className="w-full border">
                     <thead>
-                        <tr className="bg-gray-200">
+                        <tr className="bg-gray-900">
                             <th className="p-2 border">#</th>
                             <th className="p-2 border">Name</th>
                             <th className="p-2 border">Email</th>
