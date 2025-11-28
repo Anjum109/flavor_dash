@@ -8,27 +8,29 @@ import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import logo from "../assets/logo/favicon.png";
+import Link from "next/link";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const router = useRouter();
-
-    // Check login status on mount
+    const [userRole, setUserRole] = useState<string | null>(null); // Add this
+    // Check login status only on the client
     useEffect(() => {
         const token = localStorage.getItem("token");
+        const role = localStorage.getItem("role"); // Get role from localStorage
         if (token) {
             setIsLoggedIn(true);
+            setUserRole(role); // set role
         } else {
             setIsLoggedIn(false);
+            setUserRole(null); // works now
         }
     }, []);
-
-
     const handleLogout = () => {
-        localStorage.removeItem("token"); // remove JWT
+        localStorage.removeItem("token");
         setIsLoggedIn(false);
-        router.push("/login/login"); // redirect to login page
+        router.push("/login/login");
     };
 
     return (
@@ -58,9 +60,13 @@ export default function Navbar() {
                     <button><CgProfile /></button>
                     <button><FaShoppingCart /></button>
                     {isLoggedIn ? (
-                        <button onClick={handleLogout} className="text-[20px] border-2 px-3 py-1 rounded-full border-amber-600 bg-amber-800"><span className={advent_pro.className}>Logout</span></button>
+                        <button onClick={handleLogout} className="text-[20px] border-2 px-3 py-1 rounded-full border-amber-600 bg-amber-800">
+                            <span className={advent_pro.className}>Logout</span>
+                        </button>
                     ) : (
-                        <button onClick={() => router.push("/login/login")} className="text-[20px] border-2 px-3 py-1 rounded-full border-amber-600 bg-amber-800"><span className={advent_pro.className}>Login</span></button>
+                        <Link href="/login/login" className="text-[20px] border-2 px-3 py-1 rounded-full border-amber-600 bg-amber-800">
+                            <span className={advent_pro.className}>Login</span>
+                        </Link>
                     )}
                 </div>
 
@@ -95,9 +101,13 @@ export default function Navbar() {
                         <button><CgProfile /></button>
                         <button><FaShoppingCart /></button>
                         {isLoggedIn ? (
-                            <button onClick={handleLogout} className="text-lg border-2">Logout</button>
+                            <button onClick={handleLogout} className="text-lg border-2 px-2 py-1 rounded">
+                                Logout
+                            </button>
                         ) : (
-                            <button onClick={() => router.push("/login/login")}>Login</button>
+                            <Link href="/login/login" className="text-lg border-2 px-2 py-1 rounded">
+                                Login
+                            </Link>
                         )}
                     </div>
                 </ul>

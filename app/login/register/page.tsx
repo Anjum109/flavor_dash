@@ -56,7 +56,7 @@ export default function RegisterPage() {
                     role: "user",
                 });
 
-                router.push("/"); // redirect to home
+                router.push("/login/login"); // redirect to home
             }
         } catch (err) {
             setError("Server error");
