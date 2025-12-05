@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Banner from "./components/Homepage/Banner";
 import MovingWord from "./components/Homepage/MovingWord";
 import Searchbar from "./components/Homepage/Searchbar";
+import Restaurent from "./components/Homepage/Restaurent/Restaurent";
 
 export default function Home() {
   return (
@@ -11,8 +12,11 @@ export default function Home() {
         <Searchbar />
         <Navbar />
         <Banner />
+
       </div>
+
       <MovingWord />
+      <Restaurent />
     </div>
   );
 }

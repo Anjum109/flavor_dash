@@ -42,23 +42,47 @@ export default function AddRestaurants() {
     };
 
     // Submit form
+    // Submit form
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const payload = {
-            restaurantName,
-            menuItems,
-        };
+        try {
+            const formData = new FormData();
+            formData.append("restaurantName", restaurantName);
 
-        const res = await fetch("/api/restaurents", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-        });
+            if (coverImage) formData.append("coverImage", coverImage);
 
-        const data = await res.json();
-        console.log(data);
+            galleryImages.forEach((img) => formData.append("galleryImages", img));
+
+            formData.append("menuItems", JSON.stringify(menuItems));
+
+            const res = await fetch("/api/restaurents", { method: "POST", body: formData });
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({ message: "Unknown error" }));
+                console.error(errorData.message);
+                return;
+            }
+            const data = await res.json();
+
+            console.log(data);
+
+            if (res.ok) {
+                // Reset all fields
+                setRestaurantName("");
+                setCoverImage(null);
+                setGalleryImages([]);
+                setMenuItems([{ name: "", price: 0 }]);
+                alert("Restaurant added successfully!");
+            } else {
+                alert(data.message || "Failed to add restaurant");
+            }
+        } catch (err) {
+            console.error("Error:", err);
+            alert("Something went wrong!");
+        }
     };
+
+
 
 
     return (

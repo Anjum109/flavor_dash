@@ -47,7 +47,7 @@ export default function Navbar() {
                 {/* DESKTOP MENU */}
                 <div className={`hidden md:block ${advent_pro.className}`}>
                     <ul className="flex gap-6 items-center text-[20px] underline">
-                        <li className="cursor-pointer hover:text-amber-300 duration-700">Home</li>
+                        <Link href='/'>         <li className="cursor-pointer hover:text-amber-300 duration-700">Home</li></Link>
                         <li className="cursor-pointer hover:text-amber-300 duration-700">Pages</li>
                         <li className="cursor-pointer hover:text-amber-300 duration-700">Restaurant List</li>
                         <li className="cursor-pointer hover:text-amber-300 duration-700">Shop</li>
