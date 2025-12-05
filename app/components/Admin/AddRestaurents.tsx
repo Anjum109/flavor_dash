@@ -149,7 +149,12 @@ export default function AddRestaurants() {
                                 type="number"
                                 placeholder="Price"
                                 value={item.price}
-                                onChange={(e) => handleMenuChange(index, "price", parseFloat(e.target.value))}
+                                // onChange={(e) => handleMenuChange(index, "price", parseFloat(e.target.value))}
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    handleMenuChange(index, "price", val === "" ? 0 : parseFloat(val));
+                                }}
+
                                 className="border px-2 py-1 rounded w-24"
                                 required
                             />

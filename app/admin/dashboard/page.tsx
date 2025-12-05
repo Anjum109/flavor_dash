@@ -6,6 +6,7 @@ import Navbar from "@/app/components/Navbar";
 import { advent_pro } from "@/font/font";
 import UsersList from "@/app/components/Admin/UsersList";
 import AddRestaurents from "@/app/components/Admin/AddRestaurents";
+import RestaurentList from "@/app/components/Admin/RestaurentList";
 
 export default function AdminDashboard() {
     const router = useRouter();
@@ -51,6 +52,15 @@ export default function AdminDashboard() {
                         >
                             Add Restaurent
                         </li>
+                        <li
+                            className={`w-full mb-1 p-2 font-bold cursor-pointer ${activeTab === "addRestaurent"
+                                ? "bg-amber-200 text-black"
+                                : "bg-gray-300 text-black hover:bg-amber-200 duration-1000"
+                                }`}
+                            onClick={() => setActiveTab("restaurentList")}
+                        >
+                            Restaurent List
+                        </li>
                     </ul>
                 </div>
 
@@ -58,6 +68,7 @@ export default function AdminDashboard() {
                 <div className="w-[80%] p-5">
                     {activeTab === "users" && <UsersList />}
                     {activeTab === "addRestaurent" && <AddRestaurents />}
+                    {activeTab === "restaurentList" && <RestaurentList />}
                 </div>
             </div>
         </div>

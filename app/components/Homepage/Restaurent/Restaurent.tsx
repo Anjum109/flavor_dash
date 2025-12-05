@@ -31,12 +31,12 @@ export default function Restaurent() {
     if (loading) return <p className="p-5">Loading restaurants...</p>;
 
     return (
-        <div className="p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {restaurants.length === 0 ? (
                 <p>No restaurants found.</p>
             ) : (
                 restaurants.map((rest) => (
-                    <div key={rest._id} className="border rounded shadow p-2">
+                    <div key={rest._id} className="">
                         <img
                             src={rest.coverImage || "/placeholder.jpg"}
                             alt={rest.name}

@@ -63,3 +63,20 @@ export const POST = async (req: NextRequest) => {
         return NextResponse.json({ message: "Server error", error: String(err) }, { status: 500 });
     }
 };
+
+export const GET = async () => {
+    try {
+        const client = await clientPromise;
+        const db = client.db("flavorDashweb");
+        const collection = db.collection("restaurents");
+
+        const restaurants = await collection
+            .find({}, { projection: { name: 1, coverImage: 1, _id: 1 } }) // fetch name + coverImage + id
+            .toArray();
+
+        return NextResponse.json({ restaurants }, { status: 200 });
+    } catch (err) {
+        console.error("GET restaurants error:", err);
+        return NextResponse.json({ message: "Failed to fetch restaurants", error: String(err) }, { status: 500 });
+    }
+};
