@@ -4,6 +4,7 @@ import Banner from "./components/Homepage/Banner";
 import MovingWord from "./components/Homepage/MovingWord";
 import Searchbar from "./components/Homepage/Searchbar";
 import Restaurent from "./components/Homepage/Restaurent/Restaurent";
+import AIChat from "./components/Homepage/AIChat";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
 
       <MovingWord />
       <Restaurent />
+      <AIChat />
     </div>
   );
 }
